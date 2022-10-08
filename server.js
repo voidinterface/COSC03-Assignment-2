@@ -28,7 +28,10 @@ app.get('/', (req, res) => {
 
 app.use('/birds/', bird_router);
 
-// TODO: 404 page
+app.use('*', (req, res) => {
+    res.status(404);
+    res.render('404');
+})
 
 // TODO: connect to a database
 

@@ -1,0 +1,16 @@
+doctype html
+html(lang='en')
+    head
+        title COSC203: Birds of Aotearoa
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/styles/theme.css')
+        link(rel='stylesheet', href='/styles/404.css')
+    body
+        include templates/header.pug
+        main
+            h1 Error 404: Resource not found.
+            p The page you requested is not available.
+            p
+                a(href="/") Home
+        include templates/footer.pug
