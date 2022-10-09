@@ -21,4 +21,14 @@ async function filter_bird_data(search, status, sort) {
     return results;
 }
 
-module.exports = { filter_bird_data };
+async function get_bird_by_id(id) {
+    var bird;
+    await Bird.findOne({ _id: id}).then((obj) => {
+        bird = obj;
+    }).catch((e) => {
+        bird =  null;
+    });
+    return bird;
+}
+
+module.exports = { filter_bird_data, get_bird_by_id };

@@ -13,7 +13,8 @@ router.get('/', async (req, res) => {
 
     // render the Pug template 'home.pug' with the filtered data
     res.render('home', {
-        birds: await bird_controller.filter_bird_data(search, status, sort)
+        birds: await bird_controller.filter_bird_data(search, status, sort),
+        home: true
     });
 })
 
@@ -28,6 +29,19 @@ router.post('/create', async (req, res) => {
 });
 
 // TODO: get individual bird route(s)
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    var bird = await bird_controller.get_bird_by_id(id);
+    console.log(bird);
+    if (bird !== null) {
+        res.render('bird', {
+            bird: bird,
+            home: false
+        });
+    } else {
+        res.redirect("/404");
+    }
+});
 
 // TODO: Update bird route(s)
 
