@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
     // render the Pug template 'home.pug' with the filtered data
     res.render('home', {
-        birds: bird_controller.filter_bird_data(search, status, sort)
+        birds: await bird_controller.filter_bird_data(search, status, sort)
     });
 })
 

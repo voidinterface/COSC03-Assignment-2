@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const bird_router = require('./routers/bird_router');
 const image_router = require('./routers/image_router');
+const mongoose = require('mongoose');
 
 /* load .env */
 dotenv.config();
@@ -33,7 +34,21 @@ app.use('*', (req, res) => {
     res.render('404');
 })
 
-// TODO: connect to a database
+// connect to a database
+const user = process.env.DB_USER;
+const pass = process.env.DB_PASS;
+const cluster_id = process.env.CLUSTER_ID;
+const db_name = process.env.DB_NAME
+const db_url = `mongodb+srv://${user}:${pass}@cluster0.${cluster_id}.mongodb.net/${db_name}`;
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}
+mongoose.connect(db_url, options).then(() => {
+    console.log("connected to database!");
+}).catch((e) => {
+    console.error(e, 'could not connect to database.')
+})
 
 /* start the server */
 const PORT = process.env.PORT;
