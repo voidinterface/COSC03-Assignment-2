@@ -1,5 +1,6 @@
 form(action=`/birds/edit`, method="POST" enctype="multipart/form-data")
     input(type="hidden" name="id" value=bird.id)
+    input(type="hidden" name="prev_image" value=bird.photo.source)
     fieldset
         legend Common Names
         label(for="primary_name") Primary Name
@@ -42,5 +43,6 @@ form(action=`/birds/edit`, method="POST" enctype="multipart/form-data")
         legend Photo
         label(for="credit") Photo Credit
         input(type="text" name="credit" value=bird.photo.credit required)
-        input(type="text" name="source" value=bird.photo.source readonly)
+        label(for="photo") Upload Photo
+        input(type="file" name="photo")
     button(type='submit') Submit

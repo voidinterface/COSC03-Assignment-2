@@ -39,5 +39,6 @@ form(action=`/birds/create`, method="POST" enctype="multipart/form-data")
         legend Photo
         label(for="credit") Photo Credit
         input(type="text" name="credit" required)
-        input(type="text" name="source" readonly)
+        label(for="photo") Upload Photo
+        input(type="file" name="photo")
     button(type='submit') Submit

@@ -62,7 +62,7 @@ function generate_update(body) {
         update.other_names = body.other_names.split(/\r?\n/);
     } 
 
-    if (body.source != "") {
+    if (body.source) {
         update.photo.source = body.source;
     } 
     
