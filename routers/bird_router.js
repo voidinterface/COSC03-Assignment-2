@@ -32,7 +32,6 @@ router.post('/create', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     var bird = await bird_controller.get_bird_by_id(id);
-    console.log(bird);
     if (bird !== null) {
         res.render('bird', {
             bird: bird,
@@ -46,5 +45,10 @@ router.get('/:id', async (req, res) => {
 // TODO: Update bird route(s)
 
 // TODO: Delete bird route(s)
+router.get('/:id/delete', async (req, res) => {
+    const id = req.params.id;
+    await bird_controller.remove_bird_by_id(id);
+    res.redirect('/');
+});
 
 module.exports = router; // export the router

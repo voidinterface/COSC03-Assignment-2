@@ -31,4 +31,9 @@ async function get_bird_by_id(id) {
     return bird;
 }
 
-module.exports = { filter_bird_data, get_bird_by_id };
+async function remove_bird_by_id(id) {
+    await Bird.findOneAndRemove({ _id: id}).then(() => null)
+        .catch((err) => null);
+}
+
+module.exports = { filter_bird_data, get_bird_by_id, remove_bird_by_id };
