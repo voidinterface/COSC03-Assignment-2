@@ -12,6 +12,8 @@ html(lang='en')
     body
         include templates/header.pug
         aside
+            a(href="/birds/create")
+                button Create Bird
             include templates/filter_form.pug
             include templates/status_legend.pug
         main

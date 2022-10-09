@@ -1,4 +1,4 @@
-form(action=`/create`, method="POST" enctype="multipart/form-data")
+form(action=`/birds/create`, method="POST" enctype="multipart/form-data")
     fieldset
         legend Common Names
         label(for="primary_name") Primary Name
@@ -18,9 +18,9 @@ form(action=`/create`, method="POST" enctype="multipart/form-data")
     fieldset
         legend Size
         label(for="length") Length (cm)
-        input(type="text" name="length" required)
+        input(type="number" name="length" required)
         label(for="weight") Weight (g)
-        input(type="text" name="weight" required)
+        input(type="number" name="weight" required)
     fieldset
         legend Conservation
         label(for="status") Status 
@@ -35,5 +35,9 @@ form(action=`/create`, method="POST" enctype="multipart/form-data")
             option Nationally Endangered
             option Nationally Critical
             option Data Deficient
-
+    fieldset
+        legend Photo
+        label(for="credit") Photo Credit
+        input(type="text" name="credit" required)
+        input(type="text" name="source" readonly)
     button(type='submit') Submit

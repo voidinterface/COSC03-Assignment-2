@@ -37,17 +37,16 @@ async function remove_bird_by_id(id) {
 }
 
 function generate_update(body) {
-    const update = {
+    var update = {
         primary_name: body.primary_name,
         english_name: body.english_name,
-        other_names: body.other_names.split(/\r?\n/),
+        
         scientific_name: body.scientific_name,
         order: body.order,
         family: body.family,
         status: body.status,
         photo: {
             credit: body.credit,
-            source: body.source
         },
         size: {
             length: {
@@ -58,6 +57,14 @@ function generate_update(body) {
             }
         }
     }
+
+    if (body.other_names != "") {
+        update.other_names = body.other_names.split(/\r?\n/);
+    } 
+
+    if (body.source != "") {
+        update.photo.source = body.source;
+    } 
     
     return update;
 }
@@ -70,12 +77,16 @@ async function update_bird(body) {
             {_id: id},
             update
         ).then(() => null).catch((err) => null);
-    } else {
-        await Bird.create(update).then(() => null).catch((err) => null);
     }
+}
 
+async function create_bird(body) {
+    const update = generate_update(body);
+    var bird = new Bird(update);
+    //console.log(bird);
+    await Bird.create(update).then(() => null).catch((err) => null);
 }
 
 
 module.exports = { filter_bird_data, get_bird_by_id, remove_bird_by_id,
-    update_bird };
+    update_bird, create_bird };

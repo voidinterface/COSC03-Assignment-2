@@ -21,9 +21,9 @@ form(action=`/birds/edit`, method="POST" enctype="multipart/form-data")
     fieldset
         legend Size
         label(for="length") Length (cm)
-        input(type="text" name="length" value=bird.size.length.value required)
+        input(type="number" name="length" value=bird.size.length.value required)
         label(for="weight") Weight (g)
-        input(type="text" name="weight" value=bird.size.weight.value required)
+        input(type="number" name="weight" value=bird.size.weight.value required)
     fieldset
         legend Conservation
         label(for="status") Status 

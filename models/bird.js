@@ -21,9 +21,9 @@ const SizeSchema = new mongoose.Schema({
 });
 
 const BirdSchema = new mongoose.Schema({
-    primary_name: {type: String, required: true, unique: true},
-    english_name: {type: String, required: true, unique: true},
-    scientific_name: {type: String, required: true, unique: true},
+    primary_name: {type: String, required: true},
+    english_name: {type: String, required: true},
+    scientific_name: {type: String, required: true},
     order: {type: String, required: true},
     family: {type: String, required: true},
     other_names: [String],

@@ -20,17 +20,18 @@ router.get('/', async (req, res) => {
     });
 })
 
-// TODO: finishe the "Create" route(s)
+//  "Create" route(s)
 router.get('/create', (req, res) => {
-    // currently does nothing except redirect to home page
     res.render('bird_form');
 });
-router.post('/create', async (req, res) => {
-    // currently does nothing except redirect to home page
-    res.redirect('/');
+router.post('/create', upload.none(), async (req, res) => {
+    var body = req.body;
+    await bird_controller.create_bird(body);
+    res.redirect("/");
 });
 
-// TODO: get individual bird route(s)
+
+// get individual bird route(s)
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     var bird = await bird_controller.get_bird_by_id(id);
