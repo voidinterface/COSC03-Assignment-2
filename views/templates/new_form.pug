@@ -1,0 +1,39 @@
+form(action=`/create`, method="POST" enctype="multipart/form-data")
+    fieldset
+        legend Common Names
+        label(for="primary_name") Primary Name
+        input(type="text" name="primary_name" required)
+        label(for="english_name") English Name
+        input(type="text" name="english_name" required)
+        label(for="other_names") Other Names
+        textarea(name="other_names" rows="10")
+    fieldset
+        legend Taxonomy
+        label(for="scientific_name") Scientific Name
+        input(type="text" name="scientific_name" required)
+        label(for="order") Order
+        input(type="text" name="order" required)
+        label(for="family") Family
+        input(type="text", name="family" required)
+    fieldset
+        legend Size
+        label(for="length") Length (cm)
+        input(type="text" name="length" required)
+        label(for="weight") Weight (g)
+        input(type="text" name="weight" required)
+    fieldset
+        legend Conservation
+        label(for="status") Status 
+        select(name='status' id='status' required)
+            option Not Threatened
+            option Naturally Uncommon
+            option Relict
+            option Recovering
+            option Declining
+            option Nationally Increasing
+            option Nationally Vulnerable
+            option Nationally Endangered
+            option Nationally Critical
+            option Data Deficient
+
+    button(type='submit') Submit

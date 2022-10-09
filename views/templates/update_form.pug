@@ -1,0 +1,46 @@
+form(action=`/birds/edit`, method="POST" enctype="multipart/form-data")
+    input(type="hidden" name="id" value=bird.id)
+    fieldset
+        legend Common Names
+        label(for="primary_name") Primary Name
+        input(type="text" name="primary_name" value=bird.primary_name required)
+        label(for="english_name") English Name
+        input(type="text" name="english_name" value=bird.english_name required)
+        label(for="other_names") Other Names
+        textarea(name="other_names" rows="10")
+            each val in bird.other_names
+                | #{val + "\n"}
+    fieldset
+        legend Taxonomy
+        label(for="scientific_name") Scientific Name
+        input(type="text" name="scientific_name" value=bird.scientific_name required )
+        label(for="order") Order
+        input(type="text" name="order" value=bird.order required)
+        label(for="family") Family
+        input(type="text", name="family" value=bird.family required)
+    fieldset
+        legend Size
+        label(for="length") Length (cm)
+        input(type="text" name="length" value=bird.size.length.value required)
+        label(for="weight") Weight (g)
+        input(type="text" name="weight" value=bird.size.weight.value required)
+    fieldset
+        legend Conservation
+        label(for="status") Status 
+        select(name="status" id="status" required)
+            option(selected=bird.status == "Not Threatened") Not Threatened
+            option(selected=bird.status == "Naturally Uncommon") Naturally Uncommon
+            option(selected=bird.status == "Relict") Relict
+            option(selected=bird.status == "Recovering") Recovering
+            option(selected=bird.status == "Declining") Declining
+            option(selected=bird.status == "Nationally Increasing") Nationally Increasing
+            option(selected=bird.status == "Nationally Vulnerable") Nationally Vulnerable
+            option(selected=bird.status == "Nationally Endangered") Nationally Endangered
+            option(selected=bird.status == "Nationally Critical") Nationally Critical
+            option(selected=bird.status == "Data Deficient") Data Deficient
+    fieldset
+        legend Photo
+        label(for="credit") Photo Credit
+        input(type="text" name="credit" value=bird.photo.credit required)
+        input(type="text" name="source" value=bird.photo.source readonly)
+    button(type='submit') Submit

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const PhotoSchema = new mongoose.Schema({
     credit: {type: String, required: true}, 
-    source: {type: String, required: true, unique: true},
+    source: {type: String, default: "default.jpg"},
 });
 
 const LengthSchema = new mongoose.Schema({

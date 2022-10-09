@@ -36,4 +36,46 @@ async function remove_bird_by_id(id) {
         .catch((err) => null);
 }
 
-module.exports = { filter_bird_data, get_bird_by_id, remove_bird_by_id };
+function generate_update(body) {
+    const update = {
+        primary_name: body.primary_name,
+        english_name: body.english_name,
+        other_names: body.other_names.split(/\r?\n/),
+        scientific_name: body.scientific_name,
+        order: body.order,
+        family: body.family,
+        status: body.status,
+        photo: {
+            credit: body.credit,
+            source: body.source
+        },
+        size: {
+            length: {
+                value: body.length
+            },
+            weight: {
+                value: body.weight
+            }
+        }
+    }
+    
+    return update;
+}
+
+async function update_bird(body) {
+    const id = body.id;
+    const update = generate_update(body);
+    if (id !== undefined) {
+        await Bird.findOneAndUpdate(
+            {_id: id},
+            update
+        ).then(() => null).catch((err) => null);
+    } else {
+        await Bird.create(update).then(() => null).catch((err) => null);
+    }
+
+}
+
+
+module.exports = { filter_bird_data, get_bird_by_id, remove_bird_by_id,
+    update_bird };
